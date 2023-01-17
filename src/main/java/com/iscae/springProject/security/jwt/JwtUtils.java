@@ -29,9 +29,12 @@ public class JwtUtils {
     private String jwtCookie;
 
     public String getJwtFromCookies(HttpServletRequest request) {
-        Cookie cookie = WebUtils.getCookie(request, jwtCookie);
-        if (cookie != null) {
-            return cookie.getValue();
+       //Cookie cookie = WebUtils.getCookie(request, jwtCookie);
+       String token = request.getHeader("Authorization");
+
+
+        if (token != null) {
+            return token;
         } else {
             return null;
         }
