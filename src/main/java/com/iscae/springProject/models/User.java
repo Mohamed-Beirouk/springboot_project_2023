@@ -1,5 +1,6 @@
 package com.iscae.springProject.models;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,6 +54,16 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User(String nom, String prenom, long telephone, String username, String email, String password) {
+        this.username = username;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
     public User(Long id, String username, String nom, String prenom, long telephone, String email, String password, Set<Role> roles) {

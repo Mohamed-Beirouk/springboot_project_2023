@@ -1,18 +1,12 @@
 package com.iscae.springProject.security.jwt;
-
 import java.util.Date;
-
-
 import com.iscae.springProject.security.services.UserDetailsImpl;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.WebUtils;
-
 import io.jsonwebtoken.*;
 
 @Component
@@ -78,7 +72,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .setExpiration(new Date((new Date()).getTime() + 24 * 60 * 60))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
