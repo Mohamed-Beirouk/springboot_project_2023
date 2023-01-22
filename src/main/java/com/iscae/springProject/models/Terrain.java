@@ -1,6 +1,8 @@
 package com.iscae.springProject.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Objects;
 
@@ -11,8 +13,16 @@ public class Terrain {
     @Id
     @Column(name = "id")
     private long id;
+
+
+    @Basic
+    @Column(name = "idi")
+    private Long idi;
+
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "idi", referencedColumnName = "id",nullable = false,
+            insertable = false, updatable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Immobilier immobilierById;
 
     public long getId() {

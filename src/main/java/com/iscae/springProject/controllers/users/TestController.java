@@ -20,6 +20,7 @@ import java.util.List;
 public class TestController {
 
     private final ImmobilierRepository immobilierRepository;
+
     @Autowired
     public TestController(ImmobilierRepository immobilierRepository) {
         this.immobilierRepository = immobilierRepository;
@@ -29,6 +30,9 @@ public class TestController {
     public List<Immobilier> getAll() {
         return immobilierRepository.findAll();
     }
+
+
+
     @GetMapping("/all")
     public String allAccess() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
