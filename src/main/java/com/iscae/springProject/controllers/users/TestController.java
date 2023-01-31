@@ -14,17 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600000)
 @RestController
 @RequestMapping("/api/test")
 public class TestController {
 
     private final ImmobilierRepository immobilierRepository;
 
+
     @Autowired
     public TestController(ImmobilierRepository immobilierRepository) {
         this.immobilierRepository = immobilierRepository;
     }
+
+
 
     @GetMapping
     public List<Immobilier> getAll() {

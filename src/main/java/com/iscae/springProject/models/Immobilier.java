@@ -38,14 +38,22 @@ public class Immobilier {
     @Basic
     @Column(name = "wilaya")
     private String wilaya;
+
     @Basic
     @Column(name = "departement")
     private String departement;
 
+    @Basic
+    @Column(name = "etat")
+    private boolean etat;
+
 
     @OneToOne(mappedBy = "immobilierById")
+    @JsonIgnore
     private Appartement appartementById;
+
     @OneToOne(mappedBy = "immobilierById")
+    @JsonIgnore
     private Entrepot entrepotById;
 
 
@@ -57,13 +65,17 @@ public class Immobilier {
     @JoinColumn(name = "idp", referencedColumnName = "id",nullable = false,
             insertable = false, updatable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private User usersByIdp;
 
     @OneToOne(mappedBy = "immobilierById")
+    @JsonIgnore
     private Maison maisonById;
     @OneToOne(mappedBy = "immobilierById")
+    @JsonIgnore
     private Studio studioById;
     @OneToOne(mappedBy = "immobilierById")
+    @JsonIgnore
     private Terrain terrainById;
 
     public long getId() {
@@ -102,8 +114,19 @@ public class Immobilier {
         return type;
     }
 
+
+
     public void setType(String type) {
         this.type = type;
+    }
+
+
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
     }
 
     public Integer getSuperfice() {

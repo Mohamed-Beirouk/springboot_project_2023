@@ -44,6 +44,14 @@ public class Appartement {
         this.id = id;
     }
 
+    public Long getIdi() {
+        return idi;
+    }
+
+    public void setIdi(Long idi) {
+        this.idi = idi;
+    }
+
     public Integer getNbreChambre() {
         return nbreChambre;
     }

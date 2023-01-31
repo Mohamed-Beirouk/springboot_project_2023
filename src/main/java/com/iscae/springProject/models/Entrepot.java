@@ -15,7 +15,6 @@ public class Entrepot {
     private long id;
 
 
-
     @Basic
     @Column(name = "idi")
     private Long idi;

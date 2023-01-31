@@ -1,5 +1,7 @@
 package com.iscae.springProject.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -8,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "maisons")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Maison {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -86,6 +89,15 @@ public class Maison {
 
     public void setGarage(Integer garage) {
         this.garage = garage;
+    }
+
+
+    public Long getIdi() {
+        return idi;
+    }
+
+    public void setIdi(Long idi) {
+        this.idi = idi;
     }
 
     @Override
