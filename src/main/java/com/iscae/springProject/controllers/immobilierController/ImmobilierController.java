@@ -21,20 +21,27 @@ public class ImmobilierController {
     }
 
 
-    @GetMapping("/getall")
+    @GetMapping("")
     public List<Immobilier> getAll() {
         return immobilierRepository.findAll();
     }
 
-    @PostMapping("/add")
+    @PostMapping("")
     public Immobilier add(@RequestBody Immobilier immo){
         return immobilierRepository.save(immo);
     }
 
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
         immobilierRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Immobilier update(@RequestBody Immobilier immobiler, @PathVariable("id") Long id) {
+        Immobilier immobilierEntity = immobilierRepository.findById(id).orElseThrow();
+        immobilierEntity.setLatitude(immobiler.getLatitude());
+        return immobilierRepository.save(immobilierEntity);
     }
 
 }
