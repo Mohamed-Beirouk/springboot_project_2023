@@ -1,8 +1,9 @@
-package com.iscae.springProject.controllers.immobilierController;
+package com.iscae.springProject.management.controllers.immobilierController;
 
-import com.iscae.springProject.models.Immobilier;
-import com.iscae.springProject.repositories.ImmobilierRepository;
+import com.iscae.springProject.data.models.Immobilier;
+import com.iscae.springProject.data.repositories.ImmobilierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +21,16 @@ public class ImmobilierController {
         this.immobilierRepository = immobilierRepository;
     }
 
-
     @GetMapping("")
     public List<Immobilier> getAll() {
         return immobilierRepository.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Immobilier getOne(@PathVariable("id") Long id ){
+        return immobilierRepository.getOne(id);
+    }
+
 
     @PostMapping("")
     public Immobilier add(@RequestBody Immobilier immo){
@@ -37,11 +43,21 @@ public class ImmobilierController {
         immobilierRepository.deleteById(id);
     }
 
+
+
     @PutMapping("/{id}")
-    public Immobilier update(@RequestBody Immobilier immobiler, @PathVariable("id") Long id) {
-        Immobilier immobilierEntity = immobilierRepository.findById(id).orElseThrow();
-        immobilierEntity.setLatitude(immobiler.getLatitude());
-        return immobilierRepository.save(immobilierEntity);
+    public Immobilier update(@PathVariable("id") Long id, @RequestBody Immobilier immobilier){
+        Immobilier existingImmobilier = immobilierRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Immobilier not found with id " + id));
+        immobilierRepository.save(immobilier);
+        return immobilierRepository.save(existingImmobilier);
     }
 
+    @PutMapping("/changer_etat/{id}")
+    public Immobilier updateEtat(@PathVariable("id") Long id) {
+        Immobilier immobilierEntity = immobilierRepository.findById(id).orElseThrow();
+        immobilierEntity.setEtat(false);
+        return immobilierRepository.save(immobilierEntity);
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.iscae.springProject.models;
+package com.iscae.springProject.data.models;
 
 
 import jakarta.persistence.*;

@@ -1,11 +1,11 @@
-package com.iscae.springProject.models;
+package com.iscae.springProject.data.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -15,9 +15,12 @@ public class Immobilier {
     @Id
     @Column(name = "id")
     private long id;
+
+
     @Basic
-    @Column(name = "latitude")
-    private String latitude;
+    @Column(name = "altitude")
+    private String altitude;
+
     @Basic
     @Column(name = "longitude")
     private String longitude;
@@ -47,14 +50,30 @@ public class Immobilier {
     @Column(name = "etat")
     private boolean etat;
 
+    @Basic
+    @Column(name = "prixjour")
+    private Integer prixjour;
 
-    @OneToOne(mappedBy = "immobilierById")
-    @JsonIgnore
-    private Appartement appartementById;
 
-    @OneToOne(mappedBy = "immobilierById")
-    @JsonIgnore
-    private Entrepot entrepotById;
+
+    @Basic
+    @Column(name = "nbre_chambre")
+    private Integer nbreChambre;
+    @Basic
+    @Column(name = "cuisine")
+    private Integer cuisine;
+    @Basic
+    @Column(name = "jardin")
+    private Integer jardin;
+    @Basic
+    @Column(name = "etage")
+    private Integer etage;
+    @Basic
+    @Column(name = "garage")
+    private Integer garage;
+
+
+
 
 
     @Basic
@@ -68,15 +87,6 @@ public class Immobilier {
     @JsonIgnore
     private User usersByIdp;
 
-    @OneToOne(mappedBy = "immobilierById")
-    @JsonIgnore
-    private Maison maisonById;
-    @OneToOne(mappedBy = "immobilierById")
-    @JsonIgnore
-    private Studio studioById;
-    @OneToOne(mappedBy = "immobilierById")
-    @JsonIgnore
-    private Terrain terrainById;
 
     public long getId() {
         return id;
@@ -87,11 +97,11 @@ public class Immobilier {
     }
 
     public String getLatitude() {
-        return latitude;
+        return altitude;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setLatitude(String altitude) {
+        this.altitude = altitude;
     }
 
     public String getLongitude() {
@@ -145,6 +155,14 @@ public class Immobilier {
         this.description = description;
     }
 
+    public Integer getPrixjour() {
+        return prixjour;
+    }
+
+    public void setPrixjour(Integer prixjour) {
+        this.prixjour = prixjour;
+    }
+
     public Long getIdp() {
         return idp;
     }
@@ -169,65 +187,65 @@ public class Immobilier {
         this.departement = departement;
     }
 
+
+
+    public Integer getNbreChambre() {
+        return nbreChambre;
+    }
+
+    public void setNbreChambre(Integer nbreChambre) {
+        this.nbreChambre = nbreChambre;
+    }
+
+    public Integer getCuisine() {
+        return cuisine;
+    }
+
+    public void setCuisine(Integer cuisine) {
+        this.cuisine = cuisine;
+    }
+
+    public Integer getJardin() {
+        return jardin;
+    }
+
+    public void setJardin(Integer jardin) {
+        this.jardin = jardin;
+    }
+
+    public Integer getEtage() {
+        return etage;
+    }
+
+    public void setEtage(Integer etage) {
+        this.etage = etage;
+    }
+
+    public Integer getGarage() {
+        return garage;
+    }
+
+    public void setGarage(Integer garage) {
+        this.garage = garage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Immobilier that = (Immobilier) o;
-        return id == that.id && Objects.equals(latitude, that.latitude) && Objects.equals(longitude, that.longitude) && Objects.equals(reference, that.reference) && Objects.equals(type, that.type) && Objects.equals(superfice, that.superfice) && Objects.equals(description, that.description) && Objects.equals(idp, that.idp) && Objects.equals(wilaya, that.wilaya) && Objects.equals(departement, that.departement);
+        return id == that.id && Objects.equals(altitude, that.altitude) && Objects.equals(longitude, that.longitude) && Objects.equals(reference, that.reference) && Objects.equals(type, that.type) && Objects.equals(superfice, that.superfice) && Objects.equals(description, that.description) && Objects.equals(idp, that.idp) && Objects.equals(wilaya, that.wilaya) && Objects.equals(departement, that.departement);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, latitude, longitude, reference, type, superfice, description, idp, wilaya, departement);
+        return Objects.hash(id, altitude, longitude, reference, type, superfice, description, idp, wilaya, departement);
     }
 
-    public Appartement getAppartementById() {
-        return appartementById;
-    }
-
-    public void setAppartementById(Appartement appartementById) {
-        this.appartementById = appartementById;
-    }
-
-    public Entrepot getEntrepotById() {
-        return entrepotById;
-    }
-
-    public void setEntrepotById(Entrepot entrepotById) {
-        this.entrepotById = entrepotById;
-    }
 
     public User getUsersByIdp() {
         return usersByIdp;
     }
 
-    public void setUsersByIdp(User usersByIdp) {
-        this.usersByIdp = usersByIdp;
-    }
 
-    public Maison getMaisonById() {
-        return maisonById;
-    }
-
-    public void setMaisonById(Maison maisonById) {
-        this.maisonById = maisonById;
-    }
-
-
-    public Studio getStudioById() {
-        return studioById;
-    }
-
-    public void setStudioById(Studio studioById) {
-        this.studioById = studioById;
-    }
-
-    public Terrain getTerrainById() {
-        return terrainById;
-    }
-
-    public void setTerrainById(Terrain terrainById) {
-        this.terrainById = terrainById;
-    }
 }

@@ -1,21 +1,20 @@
-package com.iscae.springProject.controllers.auth;
+package com.iscae.springProject.management.controllers.auth;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 
-import com.iscae.springProject.models.Role;
-import com.iscae.springProject.models.User;
-import com.iscae.springProject.models.UserRoles;
+import com.iscae.springProject.data.models.Role;
+import com.iscae.springProject.data.models.User;
+import com.iscae.springProject.data.models.UserRoles;
 import com.iscae.springProject.payload.request.LoginRequest;
 import com.iscae.springProject.payload.request.SignupRequest;
 import com.iscae.springProject.payload.response.MessageResponse;
 import com.iscae.springProject.payload.response.UserInfoResponse;
-import com.iscae.springProject.repositories.RoleRepository;
-import com.iscae.springProject.repositories.UserRepository;
+import com.iscae.springProject.data.repositories.RoleRepository;
+import com.iscae.springProject.data.repositories.UserRepository;
 import com.iscae.springProject.security.jwt.JwtUtils;
 import com.iscae.springProject.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -50,11 +48,10 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
-    @GetMapping("/hello")
+    @GetMapping("")
     public String sayHello()
     {
-
-        return "hello";
+        return "Docker v2 3h49";
     }
 
     @PostMapping("/signin")

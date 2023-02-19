@@ -1,7 +1,6 @@
-package com.iscae.springProject.controllers.users;
+package com.iscae.springProject.management.controllers.users;
 
-import com.iscae.springProject.models.Immobilier;
-import com.iscae.springProject.repositories.ImmobilierRepository;
+import com.iscae.springProject.data.repositories.ImmobilierRepository;
 import com.iscae.springProject.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,41 +11,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @CrossOrigin(origins = "*", maxAge = 3600000)
 @RestController
-@RequestMapping("/api/test")
-public class TestController {
-
+@RequestMapping("/api/stat")
+public class StatApis {
     private final ImmobilierRepository immobilierRepository;
-
-
     @Autowired
-    public TestController(ImmobilierRepository immobilierRepository) {
+    public StatApis(ImmobilierRepository immobilierRepository) {
         this.immobilierRepository = immobilierRepository;
     }
 
-
-
-    @GetMapping
-    public List<Immobilier> getAll() {
-        return immobilierRepository.findAll();
-    }
-
-
-
-    @GetMapping("/all")
-    public String allAccess() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl user = (UserDetailsImpl)authentication.getPrincipal();
-        return user.getUsername()+" Public Content.";
+    @GetMapping("")
+    public String stats() {
+        return " Public Content";
     }
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER') or hasRole('VENDEUR') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String userAccess() {
-        return "User Content.";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl user = (UserDetailsImpl)authentication.getPrincipal();
+
+        return user.getUsername()+" User Content.";
     }
 
     @GetMapping("/mod")

@@ -1,4 +1,4 @@
-package com.iscae.springProject.models;
+package com.iscae.springProject.data.models;
 
 public enum UserRoles {
     ROLE_USER,

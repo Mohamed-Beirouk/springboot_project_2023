@@ -1,6 +1,5 @@
-package com.iscae.springProject.models;
+package com.iscae.springProject.data.models;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 

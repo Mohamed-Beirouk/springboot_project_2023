@@ -1,9 +1,9 @@
-package com.iscae.springProject.repositories;
+package com.iscae.springProject.data.repositories;
 
 
 import java.util.Optional;
 
-import com.iscae.springProject.models.User;
+import com.iscae.springProject.data.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
